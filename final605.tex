@@ -104,7 +104,72 @@ Without a driving term-- in circuit problems in general this will be the variabl
 \ddot{\phi}(t) + \dfrac{K}{C} I_c sin(\phi(t)) = 0
 \end{equation}
 
-Note that the above equation has a solution in terms of the Jacobi elliptic integral.  But, in general there will be few (if any) closed form solutions to a nonlinear differential equation.  We  omit including a solution to this equation in terms of the elliptic integral in favor of the far more revealing analysis of some numerical solutions to the equation.  Some things which we could find from the elliptic integral in a fairly accurate manner (like the period of the oscillations) are easily found from the plots themselves in an approximate form.  Using some unit analysis we find the value of the parameter in the above equation is basically:
+Note that the above equation has a solution in terms of the Jacobi elliptic integral.  But, in general there will be few (if any) closed form solutions to a nonlinear differential equation.  Rather than omit this analysis and resort to the numerical situation we decide to showcase the complementary information mathematical and numerical analysis can yield.  Some things which we could find from the elliptic integral in a fairly accurate manner (like the period of the oscillations) are easily found from the plots themselves in an approximate form.  But, say we want an explicit expression for calculating the value of lots of different points or determine what the phase space trajectories look like.  For this we need to use the method of finding a conserved quantity, ie. a Hamiltonian for the system.  The idea with this functional is that all solution curves will make it stationary.  These curves will be the trajectories of the system.
+
+\begin{equation}
+\begin{split}
+\dfrac{dH}{dt} & = \partial_{p} H \dfrac{dp}{dt} +
+\partial_{q} H \dfrac{dq}{dt} \\ 
+& = \dot{q} \dot{p} - \dot{p} \dot{q}  = 0
+\end{split}
+\end{equation}
+
+Where in the above equation the second line comes from the fact that certain partial derivative relations are necessary ones to make H conserved. These would be:
+
+\begin{equation}
+\dot{q} = \partial_{p} H
+\end{equation}
+
+\begin{equation}
+\dot{p} = -\partial_{q} H
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\dot{\phi}& = \omega \\
+& = \partial_{\omega} H(\phi, \omega)
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\dot{\omega}& = - A \sin(\phi) \\
+& = -\partial_{\phi} H(\phi, \omega)
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+H & =\dfrac{1}{2} \omega^2 +  A \cos(\phi) \\
+& = \dfrac{1}{2} \dot{\phi}^2 +  A \cos(\phi)
+\end{split}
+\end{equation}
+
+We notice that we have essentially integrated the second order differential equation, and the variable $H$ on the right side of the equation is basically the constant of integration.  In a physics situation this variable could be interpreted as the energy, and trajectories with constant energy are the trajectories of a time independent Hamiltonian.  We also note that as a convenience, that during the experiment we will measure some maximum phase difference if our case involves little to no $\dot{\phi}$, but the max $\dot{\phi}$ and $\phi$ if we are looking for the solutions with large initial velocities.
+
+\begin{equation}
+H_0 = A cos(\phi_{0})
+\end{equation}
+
+\begin{equation}
+H_0 \dfrac{1}{2}\omega_0^2 + Acos(\phi_0)
+\end{equation}
+
+We can then rearrange the last line of the equation in order to find another differential equation.
+
+\begin{equation}
+\dfrac{dt}{d\phi} = \dfrac{1}{\pm \sqrt{2H_0 -  2A \cos(\phi)}}
+\end{equation}
+
+This differential equation is not reducible by any known methods, so we decide to look at an important quantity, the period.
+
+\begin{equation}
+\dfrac{d\phi}{dt} = \pm \sqrt{2E -  2A \cos(\phi)}
+\begin{equation}
+\end{equation}
+
+
+Using some unit analysis we find the value of the parameter in the above equation is basically:
 
 \begin{equation}
 \dfrac{KI_c}{C} = \dfrac{3 \times 10^{21} Hz}{sec} \dfrac{1}{C_n}
@@ -117,14 +182,14 @@ The following phase difference plots all start at the same initial (maximum poss
 \begin{figure}
 \caption{Phase Difference of Nondriven-undamped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{uud-jjsmallc.png}
+\includegraphics[scale=0.50]{uud-jjsmallc.png}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \caption{Phase Difference of Nondriven-undamped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{uud-jjlargec.png}
+\includegraphics[scale=0.50]{uud-jjlargec.png}
 \end{center}
 \end{figure}
 
@@ -134,14 +199,14 @@ We note that the behavior of the circuit is approximately sinusoidal for smaller
 \begin{figure}
 \caption{Phase Difference of Nondriven-undamped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{uud-jjinit.png}
+\includegraphics[scale=0.50]{uud-jjinit.png}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \caption{Voltage Difference of Nondriven-undamped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{uud-jjinitv.png}
+\includegraphics[scale=0.50]{uud-jjinitv.png}
 \end{center}
 \end{figure}
 
@@ -155,7 +220,7 @@ We now decide to inspect our system while it is under a constant driving current
 \begin{figure}
 \caption{Voltage Difference of Driven-undamped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{ud-jjinitv.png}
+\includegraphics[scale=0.50]{ud-jjinitv.png}
 \end{center}
 \end{figure}
 
@@ -167,50 +232,51 @@ In this case we do not consider the presence of the resistor negligible, thus we
 \ddot{\phi}(t) + \dfrac{1}{RC} \dot{\phi}(t) + \dfrac{K}{C} I_c sin(\phi(t)) = \dfrac{K}{C} I(t)
 \end{equation}
 
-We notice that because of the scale of the problem that the value of the resistor only seems to have some apparent effect as we begin to drop below the $1 n\Omega$ mark.  Otherwise, the damping is not totally perceivable.
+We notice that because of the scale of the problem that the value of the resistor only seems to have some apparent effect as we begin to drop below the $1 n\Omega$ mark.  Otherwise, the damping is not totally perceivable.  In the sense that our unit needs to remain at a pretty much constant high frequency for only a $0.1 ns$ or so for us to have reliable high frequency sensitivity.
 
 \begin{figure}
 \caption{Phase Difference of Nondriven-damped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{dud-jjres.png}
+\includegraphics[scale=0.50]{dud-jjres.png}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \caption{Voltage Difference of Nondriven-damped Josephson Junction}
 \begin{center}
-\includegraphics[scale=0.60]{dud-jjresv.png}
+\includegraphics[scale=0.50]{dud-jjresv.png}
 \end{center}
 \end{figure}
 
 Next we introduce a $1 mA$ driving current into the system and inspect how the different resistors make the corresponding phase differences and voltage differences change over time.  I noticed something very interesting which depended on the initial phase difference, which is that if the two superconducting materials started at a phase difference of $\pi / 2$ that there was relatively no change in the phase difference as time went on, where if one started with a low phase difference that the resulting solution increased incredibly fast.  Not only this, but the larger the damping force (ie. the smaller the resistance of the resistor) the less likely the solution was from becoming non zero.
 
 \begin{figure}
-\caption{Voltage Difference of Nondriven-damped J.J. $\Delta \phi_0 = \pi / 2$}
+\caption{Voltage Difference of Driven-damped J.J. $\Delta \phi_0 = \pi / 2$}
 \begin{center}
-\includegraphics[scale=0.60]{dd-jjres.png}
+\includegraphics[scale=0.50]{dd-jjres.png}
 \end{center}
 \end{figure}
 
 \begin{figure}
-\caption{Voltage Difference of Nondriven-damped J.J. $\Delta \phi_0 = \pi / 2$}
+\caption{Voltage Difference of Driven-damped J.J. $\Delta \phi_0 = \pi / 2$}
 \begin{center}
-\includegraphics[scale=0.60]{dd-jjresv.png}
+\includegraphics[scale=0.50]{dd-jjresv.png}
 \end{center}
 \end{figure}
 
 
+
 \begin{figure}
-\caption{Voltage Difference of Nondriven-damped J.J. $\Delta \phi_0 = 0$}
+\caption{Voltage Difference of Driven-damped J.J. $\Delta \phi_0 = 0$}
 \begin{center}
-\includegraphics[scale=0.60]{dd-jjresphase0.png}
+\includegraphics[scale=0.50]{dd-jjresphase0.png}
 \end{center}
 \end{figure}
 
 \begin{figure}
-\caption{Voltage Difference of Nondriven-damped J.J. $\Delta \phi_0 = 0$}
+\caption{Voltage Difference of Driven-damped J.J. $\Delta \phi_0 = 0$}
 \begin{center}
-\includegraphics[scale=0.60]{dd-jjresphase0v.png}
+\includegraphics[scale=0.50]{dd-jjresphase0v.png}
 \end{center}
 \end{figure}
 

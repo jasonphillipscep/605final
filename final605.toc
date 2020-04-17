@@ -5,4 +5,4 @@
 \contentsline {section}{\numberline {3}The Nonlinear Circuit}{3}{section.3}% 
 \contentsline {subsection}{\numberline {3.1}Josephson Junctions}{3}{subsection.3.1}% 
 \contentsline {subsubsection}{\numberline {3.1.1}The Under-damped Case}{4}{subsubsection.3.1.1}% 
-\contentsline {subsubsection}{\numberline {3.1.2}The Damped Case}{9}{subsubsection.3.1.2}% 
+\contentsline {subsubsection}{\numberline {3.1.2}The Damped Case}{6}{subsubsection.3.1.2}% 
