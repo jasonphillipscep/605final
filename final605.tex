@@ -55,6 +55,25 @@ Note that introducing the inductor is what causes the circuit equation to become
 
 In many cases, the linear circuit equations do a great job at explaining what we see experimentally in circuits, but there are many behaviors and interesting phenomena which may only occur in the case where one is analyzing noticeably nonlinear circuitry.  This section will focus on a couple interesting examples, and a few general techniques to utilize when looking at a proposed circuit equation and also looking at how well it matches experiment.
 
+\subsection{Limit Cycles}
+
+One of the most interesting developments within nonlinear dynamics is the concept of a limit cycle.  Limit cycles are closed, isolated trajectories in the phase space of some system of equations which can determine and explain the systems mechanics at large.  These are a strictly nonlinear phenomena.  Note that there are closed trajectories say in the case of the system
+
+\begin{equation}
+\begin{bmatrix}
+\dot{x} \\ \dot{y}
+\end{bmatrix} = 
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y
+\end{bmatrix}
+\end{equation}
+
+but these closed trajectories are not isolated.  This can be seen from the fact that the trajectories in the phase space of this equation are just a bunch of concentric circles.  A limit cycle can be either stable, unstable, or semi-stable.
+
 \subsection{Josephson Junctions}
 
 Josephson junctions are superconducting devices whose function is based on the studies made by Brian Josephson in 1962, which evidently culminated in him winning the Nobel Prize in 1973.  The "Josephson effect" is a quantum phenomena where when two superconductors are placed within a short distance of each other the "Cooper pairs" in each superconductor can tunnel between the two superconductors, even when there is no voltage difference between them.  This effect can be utilized in order to produce extremely high frequency voltage oscillations, meaning they have many uses as detectors for small voltage differences, amplifiers, and fast switching devices within digital circuits.  These are only a few of their possible applications and for further information the reader is referred to Van Duzer and Turner (1981).
@@ -90,7 +109,7 @@ Before diving into the specific analysis, a comment is in order, about the trans
 
 We now inspect various Josephson Junction behaviors with different forcing currents and various circuit element values.  Note that the numerical value of the constant we determined earlier is $K = \dfrac{2e}{\hbar} = 3 \times 10^{15} Hz/V$ and we will also use $I_c = 1 mA$ since this is a typical critical current in one of these circuits.  We finally note that a typical capacitor being used in one of these circuits is off as small a capacitance as possible in order to increase the frequency at which the Junction can function, thus a typical capacitance of one of these circuits would be in the $pF$ range.  Many future and proposed applications of the Josephson junction involve capacitors in the $fF$ range.
 
-\subsubsection{The Under-damped Case}
+\subsubsection{The Non-damped Case}
 
 In considering our Josephson junction circuit, we anticipate the case where $R = \infty$ and where basically the circuit is just a Josephson Junction and a capacitor.  In this case our previous equation becomes:
 
@@ -158,16 +177,14 @@ H_0 \dfrac{1}{2}\omega_0^2 + Acos(\phi_0)
 We can then rearrange the last line of the equation in order to find another differential equation.
 
 \begin{equation}
-\dfrac{dt}{d\phi} = \dfrac{1}{\pm \sqrt{2H_0 -  2A \cos(\phi)}}
+\dfrac{d\phi}{dt} = \pm \sqrt{2E -  2A \cos(\phi)}
 \end{equation}
 
 This differential equation is not reducible by any known methods, so we decide to look at an important quantity, the period.
-
+1
 \begin{equation}
-\dfrac{d\phi}{dt} = \pm \sqrt{2E -  2A \cos(\phi)}
-\begin{equation}
+\dfrac{dt}{d\phi} = \dfrac{1}{\pm \sqrt{2H_0 -  2A \cos(\phi)}}
 \end{equation}
-
 
 Using some unit analysis we find the value of the parameter in the above equation is basically:
 
@@ -279,6 +296,185 @@ Next we introduce a $1 mA$ driving current into the system and inspect how the d
 \includegraphics[scale=0.50]{dd-jjresphase0v.png}
 \end{center}
 \end{figure}
+
+
+\subsection{van der Pol Oscillator}
+
+\subsubsection{Background}
+
+Balthasar van der Pol was a physicist working at Philips Research Laboratories.  He was an important contributor to the field of nonlinear dynamics, specifically in relation to the concept of a nonlinear oscillator.  He helped advance the quantitative development of the radio and the following equation we will decide to analyze is the van der Pol equation which pertains to the circuitry within these early radios.  He and Josephson were some of the early pioneers in the subject and a lot of concepts, specifically that of a limit cycle are largely due to the work that van der Pol did.  He also coined the idea of a relaxation oscillation, which is a strictly nonlinear phenomena, where the oscillation quickly returns to to equilibrium after a small period of relatively slow movement.  This concept is prominent in many applications: instrument strings, neurons firing, cell function.
+
+
+
+\subsubsection{Weakly Nonlinear Oscillators}
+A weakly nonlinear oscillator is the solution to a differential equation of the form: (Where $0<\epsilon << 1$)
+
+\begin{equation}
+\ddot{x} + x + \epsilon h(x, \dot{x}) = 0
+\end{equation}
+
+These equations represent a small perturbation of the linear equation. 
+
+\begin{equation}
+\ddot{x} + x = 0
+\end{equation}
+
+We decide to focus on the van der Pol oscillator, which is a good equation for describing the voltage difference within a tetrode multivibrator circuit.  These circuits had uses in early commercial radios and were the basis for a lot of his work on nonlinear oscillations. 
+
+\begin{equation}
+\ddot{x} + x + \epsilon (x^2 -1)\dot{x} = 0
+\end{equation}
+
+Why is regular perturbation theory not the best method to analyze these equations?  Well, for larger values of $\epsilon$ the number of the terms required for the perturbative analysis is more than just one or two.  We see as a result that the solutions we can obtain via this method are extremely inaccurate for large time scales.  The reader is reminded that the regular perturbation theory suggests a solution decomposition of the form:
+
+\begin{equation}
+x(t) = x_0(t) + \epsilon x_1(t) + \epsilon^2 x_2(t) + ... = \sum_{i=0}^{\infty} \epsilon^i x_i(t)
+\end{equation}
+
+The insight that one needs in order to properly asses these problems is to realize that the oscillatory solution may be dictated by multiple time scales.  A good example of this is the following equation.
+
+\begin{equation}
+\ddot{x} + 2 \epsilon \dot{x}+ x  = 0
+\end{equation}
+
+Whose solution has two components: an oscillatory solution, and an exponential decay.  Both these behaviors are not encapsulated by regular perturbation theory, which after only a two term expansion is a vastly inaccurate answer for large time scales.  
+
+We denote $\tau = t$ as the fast $O(1)$ time and $T = \epsilon t$ as the slower time scale.  Thus, we propose a solution of the form below.
+
+
+\begin{equation}
+x(t, \epsilon) = x_0(\tau, T) + \epsilon x_1(\tau, T) + O(\epsilon^2) = \sum_{i=0}^{\infty} \epsilon^i x_i(\tau, T)
+\end{equation}
+
+We proceed by substituting this expression into the weak nonlinear oscillator equation.
+
+\begin{equation}
+\ddot{x} + x + \epsilon h(x, \dot{x}) = 0
+\end{equation}
+
+We then separate this expression into different powers of $\epsilon$ and making sure each component is 0 and we obtain (for the $O(1)$ and $O(\epsilon)$ terms) the two-timing equations:
+
+\begin{equation}
+\partial_{\tau \tau} x_0  + x_0 = 0
+\end{equation}
+
+\begin{equation}
+\partial_{\tau \tau} x_1 + x_1 = -2\partial_{T \tau} x_0 -h
+\end{equation}
+
+
+Notice that we could continue looking at higher order terms, but they get more complicated.  And, the added precision of the $O(\epsilon^2)$ may not be necessary or easy.
+
+\begin{equation}
+x_0(t) = R(T) cos(\tau + \phi(T))
+\end{equation}
+
+\begin{equation}
+\partial_{\tau \tau} x_1 + x_1  = 2(R'(T)sin(\tau + \phi(T)) + R(T)cos(\tau + \phi(T)) -h
+\end{equation}
+
+We do not want any forcing terms within our $O(\epsilon)$ equation so we set the R.H.S equal to 0 and obtain an expression for $h$.
+
+\begin{equation}
+h(\phi) = 2(R'sin(\tau + \phi) + R \phi' cos(\tau + \phi))
+\end{equation}
+
+As the equation for $h$ is constant with respect to $\tau$ we make the substitution:
+
+\begin{equation}
+\theta = \tau + \phi
+\end{equation}
+
+\begin{equation}
+h(\theta) = 2(R'sin(\theta) + R \phi' cos(\theta))
+\end{equation}
+
+By performing a Fourier decomposition we obtain two differential equations in $T$.
+
+\begin{equation}
+R' = \dfrac{1}{2 \pi} \int_{-\pi}^{\pi} h(\theta) sin(\theta) d \theta = \dfrac{1}{2} \langle h, sin(\theta) \rangle
+\end{equation}
+
+\begin{equation}
+R \phi' = \dfrac{1}{2 \pi} \int_{-\pi}^{\pi} h(\theta) cos(\theta) d \theta  = \dfrac{1}{2}\langle h, cos(\theta) \rangle
+\end{equation}
+
+Not losing sight of our initial problem, we turn to analyzing the slightly nonlinear van der Pol equation, now that we have developed the machinery to do so.
+
+\begin{equation}
+h = (x^2 - 1) \dot{x} = (r^2 \cos^2(\theta) -1)(-r \sin(\theta)) 
+\end{equation}
+
+\begin{equation}
+r' = - \dfrac{1}{2} \langle r^3 \cos^2(\theta) \sin(\theta), \sin(\theta) \rangle +  \dfrac{1}{2} \langle r \sin(\theta), \sin(\theta) \rangle
+\end{equation}
+
+\begin{equation}
+r' = -\dfrac{1}{8} r^3 + \dfrac{1}{2}r
+\end{equation}
+
+\begin{equation}
+r \phi' = - \dfrac{1}{2} \langle r^3 \cos^2(\theta) \sin(\theta), \cos(\theta) \rangle +  \dfrac{1}{2} \langle r \sin(\theta), \sin(\theta) \rangle = 0
+\end{equation}
+
+Through a partial fraction decomposition we can solve the equation for $r'$.
+
+\begin{equation}
+\begin{split}
+ -dT & = 8 \dfrac{dr}{r(r^2-4)} \\
+ & = 8 \dfrac{dr}{r(r-2)(r+2)} \\
+ & = 8( -\dfrac{dr}{4r}  + \dfrac{dr}{8(r-2)}+\dfrac{dr}{8(r+2)}) \\
+ & = -\dfrac{2dr}{r}  + \dfrac{dr}{(r-2)}+\dfrac{dr}{(r+2)}
+\end{split}
+\end{equation}
+
+\begin{equation}
+-T = C + \ln \dfrac{(r^2-4)}{r^2} 
+\end{equation}
+
+\begin{equation}
+Ae^{-T} = 1 + \dfrac{-4}{r^2}
+\end{equation}
+
+\begin{equation}
+r(T)=\dfrac{2}{\sqrt{1 + Ae^{-T}}}
+\end{equation}
+
+Taking the initial displacement of the oscillator to be $r_0$ at $t = 0$ we find that
+
+\begin{equation}
+\dfrac{4}{r_0^2} - 1 = A
+\end{equation}
+
+\begin{equation}
+\phi' = 0 \implies \phi = \delta
+\end{equation}
+
+Thus, only needing the first term in our two-timing perturbative solution we find that our approximate solution to the slightly nonlinear van der Pol equation is:
+
+\begin{equation}
+x(t) = \dfrac{2}{\sqrt{1 + (4/r_0^2 - 1)e^{-\epsilon t}}} \cos(t + \delta)
+\end{equation}
+
+Notice that the concept of a limit cycle is obvious in this equation as the time $t$ gets pretty large the displacement during each approaches 2 units from equilibrium.
+
+\subsection{Limit Cycles in van der Pol Equation}
+
+\begin{equation}
+
+\end{equation}
+
+
+\subsection{Duffing Oscillator}
+
+In the case where one is analyzing circuitry in which there is a sense of the restoring force being nonlinear we have the first order approximation of the Josephson Junction in the form of the Duffing equation.
+
+\begin{equation}
+\ddot{x} + x + \epsilon x^3 = 0
+\end{equation}
+
+As one can see, if we took a Taylor expansion of the $\sin$ function in the Josephson junction equation we would have obtained the Duffing equation.  Thus, even though we cannot find an explicit expression for the actual Josephson junction phase equation, we can find a perturbative solution to the Duffing equation and adjust it to fit the Josephson Junction model as needed.  In any case, we see that the Duffing equation could be thought of as modeling a spring which becomes more difficult or less difficult to stretch as the displacement becomes greater.  This property depends on the sign of the $\epsilon$ term.
+
 
 \end{document}
 

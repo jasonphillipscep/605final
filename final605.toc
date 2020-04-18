@@ -3,6 +3,10 @@
 \contentsline {subsection}{\numberline {2.1}First Order: RC circuit}{2}{subsection.2.1}% 
 \contentsline {subsection}{\numberline {2.2}Second Order: The RLC Circuit}{2}{subsection.2.2}% 
 \contentsline {section}{\numberline {3}The Nonlinear Circuit}{3}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Josephson Junctions}{3}{subsection.3.1}% 
-\contentsline {subsubsection}{\numberline {3.1.1}The Under-damped Case}{4}{subsubsection.3.1.1}% 
-\contentsline {subsubsection}{\numberline {3.1.2}The Damped Case}{6}{subsubsection.3.1.2}% 
+\contentsline {subsection}{\numberline {3.1}Limit Cycles}{3}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Josephson Junctions}{3}{subsection.3.2}% 
+\contentsline {subsubsection}{\numberline {3.2.1}The Non-damped Case}{5}{subsubsection.3.2.1}% 
+\contentsline {subsubsection}{\numberline {3.2.2}The Damped Case}{9}{subsubsection.3.2.2}% 
+\contentsline {subsection}{\numberline {3.3}van der Pol Oscillator}{10}{subsection.3.3}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Background}{10}{subsubsection.3.3.1}% 
+\contentsline {subsubsection}{\numberline {3.3.2}Weakly Nonlinear Oscillators}{13}{subsubsection.3.3.2}% 
